@@ -1,0 +1,20 @@
+# Pinned versions so results are comparable across machines.
+services:
+  postgres:
+    image: postgres:17.12
+    environment:
+      POSTGRES_PASSWORD: bench
+    shm_size: 1g # parallel workers need more than Docker's 64 MB default
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 2s
+      retries: 30
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:25.7
+    ulimits:
+      nofile: { soft: 262144, hard: 262144 }
+    healthcheck:
+      test: ["CMD", "clickhouse-client", "-q", "SELECT 1"]
+      interval: 2s
+      retries: 30
