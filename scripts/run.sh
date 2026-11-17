@@ -113,10 +113,10 @@ ch -q "SELECT countIf(toInt64(round(amt_f32 * 100)) != cents) AS bad, count() AS
 echo
 echo "Example: \$$(ch -q "SELECT toString(amt_dec) FROM deals ORDER BY cents DESC LIMIT 1") is stored as \$$(ch -q "SELECT toString(amt_f32) FROM deals ORDER BY cents DESC LIMIT 1")."
 
-log "Attribution splits…"
+log "Equal splits…"
 cat <<EOF
 
-## 5. Attribution: split each deal into N equal Float64 shares, add them back
+## 5. Splitting: divide each deal into N equal Float64 shares, add them back
 
 | Touchpoints | Deals where the shares sum exactly to the deal |
 | --- | --- |

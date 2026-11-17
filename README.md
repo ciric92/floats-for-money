@@ -16,7 +16,7 @@ the correctness results should match.
 | 2 | Does it become stable with a single thread? | ClickHouse, Postgres |
 | 3 | How often does float arithmetic disagree with decimal arithmetic, row by row? | Postgres |
 | 4 | How many B2B deal amounts ($1k–$5M) survive being stored as `Float32`? | ClickHouse |
-| 5 | Split a deal into N equal attribution shares: do they add back up to the deal? | ClickHouse |
+| 5 | Split an amount into N equal shares (installments, monthly billing, cost allocation): do they add back up? | ClickHouse |
 | 6 | What does an exact decimal cost in speed? | ClickHouse, Postgres |
 | 7 | Fixed-point ad money: what do 5 or 6 decimal places do to margins at low CPMs? | Python, stdlib only |
 
@@ -110,7 +110,7 @@ scripts/adserver_rounding.py  fixed-point margin table
 - **ClickHouse `sum(Float32)` adds up in Float64,** so its error comes from storage alone.
   Postgres `sum(real)` returns `real` and adds up in single precision, which is why its error
   is so much larger.
-- **Decimals don't make 1/3 exact.** The attribution experiment shows that floats hide the
+- **Decimals don't make 1/3 exact.** The splitting experiment shows that floats hide the
   leftover; a decimal type makes you decide where the leftover cent goes.
 
 ## Licence
