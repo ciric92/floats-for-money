@@ -1,6 +1,6 @@
 # Floats for money: a benchmark
 
-Companion repo for the article *Don't Use Floats for Money (and Then It Breaks Anyway)*. It
+Companion repo for the article *Money problems*. It
 measures what floating-point money actually does to analytics numbers in ClickHouse and
 Postgres. It also shows how a fixed-point type that is "done right" still breaks when prices
 get small enough.
